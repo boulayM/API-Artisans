@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const SECRET_KEY = process.env.SECRET_KEY;
 const cors = require ('cors');
+const Artisan = require ('./models/artisans');
 
 
 var indexRouter = require('./routes/index');
@@ -30,5 +31,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.get('/artisan', async (req, res) => {
+  try {
+    const artisan = await Artisan.findAll({
+  attributes: { exclude: ['createdAt', 'updatedAt'] }
+});
+    res.json(artisan);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch artisan' });
+  }
+}); 
+
 
 module.exports = app;

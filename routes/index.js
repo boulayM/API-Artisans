@@ -7,7 +7,7 @@ const artisansRoute = require ('../routes/artisans');
 router.get('/', async (req, res) => {
   res.render('index', { title: 'Express' });
 });
-
-router.use ('/artisans', artisansRoute);
+ 
+//router.use ('/artisan', artisansRoute);
 
 module.exports = router;

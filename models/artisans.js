@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('sqlite::memory:');
 
+
 const Artisan = sequelize.define(
   'artisan',
   {
@@ -29,18 +30,19 @@ const Artisan = sequelize.define(
     },
 
     note : {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(2,1),
               allowNull: false,
     },
 
     top : {
-        type: DataTypes.TINYINT,
+        type: DataTypes.BOOLEAN,
               allowNull: false,
     },
 
     categorie : {
         type: DataTypes.INTEGER,
               allowNull: false,
+          
     },
 
     specialite : {
@@ -51,11 +53,10 @@ const Artisan = sequelize.define(
     ville : {
         type: DataTypes.INTEGER,
               allowNull: false,
-    },
-
+    }
+    
 }
 );
 
-console.log(Artisan === sequelize.models.Artisan);
 
 module.exports = sequelize.models.Artisan;
