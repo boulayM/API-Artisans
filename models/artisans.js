@@ -59,4 +59,4 @@ const Artisan = sequelize.define(
 );
 
 
-module.exports = sequelize.models.Artisan;
+module.exports = Artisan;

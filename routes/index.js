@@ -8,6 +8,6 @@ router.get('/', async (req, res) => {
   res.render('index', { title: 'Express' });
 });
  
-//router.use ('/artisan', artisansRoute);
+router.use ('/artisan', artisansRoute);
 
 module.exports = router;
