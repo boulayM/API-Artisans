@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('artisan_r_a', 'admin', '2*/3_7mN', {
   host: '127.0.0.1',
-  dialect: 'mysql'
+  dialect: 'mariadb'
 });
 
 exports.dbConnection = async () => {
