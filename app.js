@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+/*
 app.get('/artisan', async (req, res) => {
   try {
     const artisan = await Artisan.findAll({
@@ -43,5 +43,5 @@ app.get('/artisan', async (req, res) => {
   }
 }); 
 
-
+*/
 module.exports = app;
