@@ -4,14 +4,25 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const SECRET_KEY = process.env.SECRET_KEY;
 const cors = require ('cors');
-const Artisan = require ('./models/artisans');
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const artisanIdRouter = require('./routes/artisanId');
+const artisansRouter = require('./routes/artisans');
+const villesRouter = require('./routes/villes');
+const catRouter = require('./routes/categories');
+const specRouter = require('./routes/specialites');
+const atdmRouter = require('./routes/artisansDuMois');
+const artAlimRouter = require('./routes/alimentation');
+const artBatimentRouter = require('./routes/batiment');
 
 const mysql = require ('./db/mysql');
 mysql.dbConnection();
+const { sequelize } = require('./db/mysql');
+sequelize.sync()
+  .then(() => console.log('Models synchronized.'))
+  .catch(err => console.error('Error syncing models:', err));
 
 var app = express();
 
@@ -31,17 +42,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-/*
-app.get('/artisan', async (req, res) => {
-  try {
-    const artisan = await Artisan.findAll({
-  attributes: { exclude: ['createdAt', 'updatedAt'] }
-});
-    res.json(artisan);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch artisan' });
-  }
-}); 
+app.use('/artisans', artisansRouter);
+app.use('/artisans/:id', artisanIdRouter);
+app.use('/atdm', atdmRouter);
+app.use('/villes', villesRouter);
+app.use('/categories', catRouter);
+app.use('/specialites', specRouter);
+app.use('/artAlim', artAlimRouter);
+app.use('/artBatiment', artBatimentRouter);
 
-*/
+
+
 module.exports = app;

@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('artisan_r_a', 'admin', '2*/3_7mN', {
+const sequelize = new Sequelize('artisans_r_a', 'admin', '2*/3_7mN', {
   host: '127.0.0.1',
   dialect: 'mariadb'
 });
@@ -13,3 +13,5 @@ exports.dbConnection = async () => {
   console.error('Unable to connect to the database:', error);
 }
 }
+
+exports.sequelize = sequelize
