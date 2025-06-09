@@ -1,15 +1,14 @@
-const Artisan = require ('../models/artisan');
+const Categorie = require ('../models/categories');
 
 exports.getAll = async (req, res, next) => {
     
  try {
-    const artisan = await Artisan.findAll({
+    const categorie = await Categorie.findAll({
   attributes: { exclude: ['createdAt', 'updatedAt'] }
 });
-    res.json(artisan);
+    res.json(categorie);
   } catch (error) {
     console.error('Erreur dans /artisan :', error);
     res.status(500).json({ error: 'Failed to fetch artisan' });
   }
 }; 
-
