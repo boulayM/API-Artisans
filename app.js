@@ -8,14 +8,15 @@ const cors = require ('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const artisanIdRouter = require('./routes/artisanId');
+const artisanIdRouter = require('./routes/artisans');
 const artisansRouter = require('./routes/artisans');
-const villesRouter = require('./routes/villes');
-const catRouter = require('./routes/categories');
-const specRouter = require('./routes/specialites');
+const artisanNom = require('./routes/artisans');
 const atdmRouter = require('./routes/artisansDuMois');
-const artAlimRouter = require('./routes/alimentation');
-const artBatimentRouter = require('./routes/batiment');
+const categoriesRouter = require ('./routes/categories');
+const batimentRouter = require ('./routes/batiment');
+const alimentRouter = require ('./routes/alimentation');
+const fabricationRouter = require ('./routes/fabrication');
+const servicesRouter = require ('./routes/services');
 
 const mysql = require ('./db/mysql');
 mysql.dbConnection();
@@ -43,14 +44,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/artisans', artisansRouter);
-app.use('/artisans/:id', artisanIdRouter);
+app.use('/artisans/', artisanIdRouter);
+app.use('/artisans/',artisanNom);
 app.use('/atdm', atdmRouter);
-app.use('/villes', villesRouter);
-app.use('/categories', catRouter);
-app.use('/specialites', specRouter);
-app.use('/artAlim', artAlimRouter);
-app.use('/artBatiment', artBatimentRouter);
-
+app.use('/categories', categoriesRouter);
+app.use('/batiment', batimentRouter);
+app.use('/alimentation', alimentRouter);
+app.use('/fabrication', fabricationRouter);
+app.use('/services', servicesRouter);
 
 
 module.exports = app;
