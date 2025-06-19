@@ -34,11 +34,11 @@ try {
 exports.getByName = async (req, res, next) => {
     
  try {
-    const { nom } = req.query;
+    const {nom} = req.params;
     
     const artisan = await Artisan.findAll({
       attributes: { exclude: ['createdAt', 'updatedAt'] },
-      where: {nom: {[Op.like]: `%${nom}%}`},
+      where: {nom: {[Op.like]: `%${nom}%`},
     }});
     
 
@@ -51,3 +51,17 @@ exports.getByName = async (req, res, next) => {
       res.status(500).json({ error: 'Failed to fetch artisan' });
     }
 }; 
+
+exports.artisansDuMois = async (req, res, next) => {
+  try {
+    const atdm= await Artisan.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      where: { top: 1, },
+    });
+    res.json(atdm);
+      } catch (error) {
+    console.error('Erreur dans /artisan :', error);
+    res.status(500).json({ error: 'Failed to fetch artisan' });
+
+  }
+};

@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('artisans_r_a', 'admin', '2*/3_7mN', {
-  host: '127.0.0.1',
+const sequelize = new Sequelize(process.env.MYSQL_DB, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
+  host: process.env.API_URL,
   dialect: 'mariadb'
 });
 
